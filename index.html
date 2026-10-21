@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosticería Los Gavilanes</title>
+    <meta name="description"
+        content="Rosticería Los Gavilanes — tu local de confianza para pollo rostizado, piernas de pavo, pescuesos, tortillas y refrescos en Nextlalpan.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e11d48;
+            /* Red for food/chicken */
+            --primary-hover: #be123c;
+            --dark: #1f2937;
+            --light: #fffbeb;
+            /* Warm yellow tint for background */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 550px;
+            background-image: url('rosticeria_real_bg.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.7), rgba(153, 27, 27, 0.4));
+        }
+
+        .glass-card {
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transform: translateY(40px);
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(80px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(40px);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d97706;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+        }
+
+        p.description {
+            font-size: 1.2rem;
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(225, 29, 72, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(225, 29, 72, 0.4);
+        }
+
+        .content-section {
+            padding: 100px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .content-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 60px 20px;
+            }
+
+            .glass-card {
+                transform: translateY(0);
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            @keyframes slideUp {
+                to {
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary);
+        }
+
+        .info-icon {
+            background: #ffe4e6;
+            color: #be123c;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.8rem;
+        }
+
+        .info-item:nth-child(2) .info-icon {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .info-item:nth-child(3) .info-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .info-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+            color: #111827;
+        }
+
+        .info-text p {
+            color: #6b7280;
+            line-height: 1.5;
+            font-size: 1.1rem;
+        }
+
+        .map-wrapper {
+            position: relative;
+            padding: 10px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 500px;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: contrast(1.05) saturate(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        .map-container:hover iframe {
+            filter: contrast(1.1) saturate(1.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+            font-size: 1rem;
+            margin-top: auto;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .products-section {
+            background: linear-gradient(135deg, #fff1f2, #fff7ed);
+            padding: 80px 20px;
+            border-top: 1px solid #fecdd3;
+        }
+
+        .products-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .products-subtitle {
+            text-align: center;
+            color: #6b7280;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 24px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 4px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-bottom-color: var(--primary);
+        }
+
+        .product-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .product-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .product-card p {
+            color: #6b7280;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    
+.theme-toggle{position:fixed;top:16px;right:16px;z-index:1000;background:#fff;color:#881337;border:2px solid #be123c;border-radius:30px;padding:11px 17px;cursor:pointer;font-size:16px;font-weight:700;box-shadow:0 4px 16px #0004}
+.theme-toggle:focus-visible{outline:3px solid #facc15;outline-offset:3px}
+:root[data-theme="dark"]{color-scheme:dark;--primary:#fb7185;--primary-hover:#e11d48;--dark:#f8fafc;--light:#0f172a;--glass-bg:rgba(25,35,55,.96);--glass-border:#475569;--box-shadow:0 10px 40px #0006}
+:root[data-theme="dark"] .info-item,:root[data-theme="dark"] .product-card,:root[data-theme="dark"] .map-wrapper,:root[data-theme="dark"] footer{background:#1e293b;color:#f8fafc}
+:root[data-theme="dark"] .products-section{background:linear-gradient(135deg,#111827,#292035);border-top-color:#475569}
+:root[data-theme="dark"] .info-text h3,:root[data-theme="dark"] .product-card h3,:root[data-theme="dark"] .products-title{color:#f8fafc}
+:root[data-theme="dark"] .info-text p,:root[data-theme="dark"] .product-card p,:root[data-theme="dark"] .products-subtitle,:root[data-theme="dark"] footer{color:#cbd5e1}
+:root[data-theme="dark"] p.description{color:#e2e8f0}
+:root[data-theme="dark"] .rating{color:#fbbf24}
+:root[data-theme="dark"] footer{border-top-color:#475569}
+:root[data-theme="dark"] .theme-toggle{background:#1e293b;color:#fff;border-color:#fda4af}
+:root[data-theme="dark"] .cta-button{background:#be123c;color:#fff}
+:root[data-theme="dark"] .cta-button:hover{background:#9f1239}
+@media(max-width:480px){.theme-toggle{top:10px;right:10px;padding:9px 12px;font-size:14px}}
+
+/* Halloween: decoración opcional, independiente del modo claro/oscuro */
+.halloween-toggle{position:fixed;top:16px;right:185px;z-index:1000;background:#301047;color:#fff;border:2px solid #fb923c;border-radius:30px;padding:11px 15px;cursor:pointer;font-size:15px;font-weight:700;box-shadow:0 4px 16px #0004}
+.halloween-toggle:focus-visible{outline:3px solid #facc15;outline-offset:3px}
+.halloween-decoration{display:none;position:absolute;z-index:2;left:0;right:0;top:22px;pointer-events:none;justify-content:space-around;font-size:clamp(22px,4vw,44px);filter:drop-shadow(0 4px 5px #0008)}
+.halloween-ribbon{display:none;padding:15px 18px;text-align:center;background:#301047;color:#fff2d8;font-weight:700;font-size:clamp(15px,2.3vw,22px);border-bottom:3px solid #fb923c}
+:root[data-halloween="on"]{--primary:#ea580c;--primary-hover:#c2410c;--light:#fff7ed;--dark:#2e1065;--glass-bg:rgba(255,247,237,.95)}
+:root[data-halloween="on"] .halloween-decoration{display:flex}
+:root[data-halloween="on"] .halloween-ribbon{display:block}
+:root[data-halloween="on"] .hero::before{background:linear-gradient(135deg,rgba(39,13,65,.85),rgba(154,52,18,.62))}
+:root[data-halloween="on"] .products-section{background:linear-gradient(135deg,#ffedd5,#f3e8ff);border-top-color:#fb923c}
+:root[data-halloween="on"] .badge{background:#fed7aa;color:#7c2d12}
+:root[data-halloween="on"] .rating{color:#a16207}
+:root[data-halloween="on"] .cta-button{background:#c2410c;color:#fff}
+:root[data-halloween="on"] .cta-button:hover{background:#9a3412}
+:root[data-halloween="on"] .info-icon{background:#ffedd5;color:#9a3412}
+:root[data-halloween="on"] .halloween-toggle{background:#ea580c;border-color:#fed7aa;color:#fff}
+:root[data-theme="dark"][data-halloween="on"]{--light:#140f23;--dark:#f8fafc;--glass-bg:rgba(36,22,49,.95)}
+:root[data-theme="dark"][data-halloween="on"] .products-section{background:linear-gradient(135deg,#231233,#3b1b24)}
+:root[data-theme="dark"][data-halloween="on"] .product-card,
+:root[data-theme="dark"][data-halloween="on"] .info-item{background:#2d203a;border-color:#a855f7}
+:root[data-theme="dark"][data-halloween="on"] .product-card h3,
+:root[data-theme="dark"][data-halloween="on"] .info-text h3,
+:root[data-theme="dark"][data-halloween="on"] .products-title{color:#fff7ed}
+:root[data-theme="dark"][data-halloween="on"] .product-card p,
+:root[data-theme="dark"][data-halloween="on"] .info-text p,
+:root[data-theme="dark"][data-halloween="on"] .products-subtitle{color:#e9d5ff}
+:root[data-theme="dark"][data-halloween="on"] .rating{color:#fbbf24}
+:root[data-theme="dark"][data-halloween="on"] .badge{color:#7c2d12}
+@media(max-width:480px){.halloween-toggle{top:57px;right:10px;padding:8px 11px;font-size:13px}.halloween-decoration{top:112px;font-size:21px}}
+
+/* Halloween permanente: murciélagos y telarañas */
+.halloween-scene{position:fixed;inset:0;z-index:900;pointer-events:none;overflow:hidden}
+.halloween-scene .web{position:absolute;font-size:clamp(55px,10vw,120px);line-height:1;opacity:.8;filter:drop-shadow(0 2px 3px #0007)}
+.halloween-scene .tl{top:-15px;left:-15px;transform:rotate(-25deg)}
+.halloween-scene .tr{top:-15px;right:-15px;transform:scaleX(-1) rotate(-25deg)}
+.halloween-scene .bl{bottom:-15px;left:-15px;transform:rotate(25deg)}
+.halloween-scene .br{bottom:-15px;right:-15px;transform:scaleX(-1) rotate(25deg)}
+.halloween-scene .bat{position:absolute;top:0;left:0;font-size:clamp(25px,4vw,45px);opacity:0;filter:drop-shadow(0 3px 4px #000a);animation:bat-descend 5.5s ease-in-out forwards;will-change:transform,opacity}
+.halloween-scene .b1{--bat-x:15vw;--bat-drift:6vw;animation-delay:.15s}
+.halloween-scene .b2{--bat-x:49vw;--bat-drift:-8vw;animation-delay:.55s;font-size:32px}
+.halloween-scene .b3{--bat-x:78vw;--bat-drift:5vw;animation-delay:1s;font-size:38px}
+@keyframes bat-descend{
+0%{transform:translate(var(--bat-x),-15vh) rotate(-16deg) scale(.65);opacity:0}
+12%{opacity:1}
+45%{transform:translate(calc(var(--bat-x) + var(--bat-drift)),35vh) rotate(14deg) scale(1.1);opacity:1}
+75%{opacity:1}
+100%{transform:translate(var(--bat-x),110vh) rotate(-12deg) scale(.8);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.halloween-scene .bat{animation:none;opacity:0}}
+
+/* Bandada de murciélagos cruzando la pantalla */
+.flock{position:absolute;inset:0;overflow:hidden}
+.flock .fb{position:absolute;top:var(--y);left:0;font-size:var(--s);opacity:0;filter:drop-shadow(0 3px 4px #000a);animation:bat-cross var(--dur) linear var(--delay) forwards;will-change:transform,opacity}
+.flock .fb i{display:block;font-style:normal;transform-origin:center;animation:bat-flap .38s ease-in-out infinite alternate}
+.flock .fb.rtl{animation-name:bat-cross-back}
+@keyframes bat-cross{
+0%{transform:translate(-12vw,0) rotate(6deg);opacity:0}
+6%{opacity:1}
+25%{transform:translate(23vw,var(--amp)) rotate(-8deg)}
+50%{transform:translate(50vw,calc(var(--amp) * -1)) rotate(8deg)}
+75%{transform:translate(77vw,var(--amp)) rotate(-8deg)}
+94%{opacity:1}
+100%{transform:translate(112vw,0) rotate(6deg);opacity:0}
+}
+@keyframes bat-cross-back{
+0%{transform:translate(112vw,0) scaleX(-1) rotate(6deg);opacity:0}
+6%{opacity:1}
+25%{transform:translate(77vw,var(--amp)) scaleX(-1) rotate(-8deg)}
+50%{transform:translate(50vw,calc(var(--amp) * -1)) scaleX(-1) rotate(8deg)}
+75%{transform:translate(23vw,var(--amp)) scaleX(-1) rotate(-8deg)}
+94%{opacity:1}
+100%{transform:translate(-12vw,0) scaleX(-1) rotate(6deg);opacity:0}
+}
+@keyframes bat-flap{from{transform:scaleY(1) scaleX(1)}to{transform:scaleY(.55) scaleX(1.12)}}
+@media(prefers-reduced-motion:reduce){.flock{display:none}}
+
+        .hero-cta-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
+        .hero-cta-actions .cta-button { padding: 14px 24px; font-size: 1rem; }
+        .hero-cta-actions .cta-maps { background: #334155; color: #fff; box-shadow: 0 8px 25px #0003; }
+        .hero-cta-actions .cta-maps:hover { background: #1e293b; }
+        html { scroll-behavior: smooth; }
+        #menu { scroll-margin-top: 25px; }
+        @media (max-width: 480px) { .hero-cta-actions { flex-direction: column; } .hero-cta-actions .cta-button { width: 100%; } }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+        .road-notice { display:flex; align-items:flex-start; gap:22px; max-width:1150px; margin:70px auto 0; padding:28px 32px; border:2px solid #fb923c; border-left:8px solid #ea580c; border-radius:22px; background:#fff7ed; color:#431407; box-shadow:0 12px 30px #0002; }
+        .road-notice-icon { font-size:3rem; line-height:1; }
+        .road-notice-label { font-size:1rem; text-transform:uppercase; font-weight:800; letter-spacing:.08em; color:#9a3412; }
+        .road-notice h2 { font-size:clamp(1.75rem,3.5vw,2.5rem); margin:6px 0 16px; color:#7c2d12; }
+        .road-notice p { font-size:clamp(1.15rem,1.65vw,1.35rem); line-height:1.65; margin:12px 0; }
+        .phone-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+        .phone-list a { display:block; padding:12px 8px; text-align:center; font-size:1rem; font-weight:700; color:#9f1239; background:#fff1f2; border:1px solid #fecdd3; border-radius:10px; text-decoration:none; }
+        .phone-list a:hover,.phone-list a:focus-visible { background:#ffe4e6; text-decoration:underline; }
+        .contact-info .info-text { min-width:0; width:100%; }
+        :root[data-theme="dark"] .road-notice { background:#302034; color:#fce7d1; border-color:#fdba74; border-left-color:#fb923c; }
+        :root[data-theme="dark"] .road-notice h2,:root[data-theme="dark"] .road-notice-label { color:#fdba74; }
+        :root[data-theme="dark"] .phone-list a { background:#39243e; color:#ffe4e6; border-color:#a78bfa; }
+        :root[data-theme="dark"] .phone-list a:hover { background:#4c3151; }
+        @media(max-width:760px) { .road-notice {margin:38px 16px 0;padding:22px 18px;gap:12px}.road-notice-icon{font-size:2rem}.phone-list{grid-template-columns:1fr}.info-item{padding:20px 16px;gap:12px} }
+</style>
+<script>try{if(localStorage.getItem('gavilanes-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script><script>document.documentElement.dataset.halloween='on';</script></head>
+
+<body><div class="halloween-scene" aria-hidden="true"><span class="web tl">🕸️</span><span class="web tr">🕸️</span><span class="web bl">🕸️</span><span class="web br">🕸️</span><span class="bat b1">🦇</span><span class="bat b2">🦇</span><span class="bat b3">🦇</span><div class="flock"><span class="fb" style="--y:47vh;--s:26px;--dur:6.7s;--delay:1.21s;--amp:-9vh"><i>🦇</i></span><span class="fb" style="--y:52vh;--s:40px;--dur:5.7s;--delay:1.61s;--amp:-9vh"><i>🦇</i></span><span class="fb" style="--y:17vh;--s:35px;--dur:6.8s;--delay:1.82s;--amp:9vh"><i>🦇</i></span><span class="fb rtl" style="--y:13vh;--s:40px;--dur:5.9s;--delay:2.1s;--amp:-9vh"><i>🦇</i></span><span class="fb" style="--y:56vh;--s:23px;--dur:8.4s;--delay:2.33s;--amp:-6vh"><i>🦇</i></span><span class="fb" style="--y:43vh;--s:35px;--dur:5.9s;--delay:2.63s;--amp:6vh"><i>🦇</i></span><span class="fb" style="--y:29vh;--s:25px;--dur:7.2s;--delay:3.04s;--amp:6vh"><i>🦇</i></span><span class="fb rtl" style="--y:18vh;--s:39px;--dur:7.6s;--delay:3.3s;--amp:-6vh"><i>🦇</i></span><span class="fb" style="--y:69vh;--s:43px;--dur:7.1s;--delay:3.63s;--amp:9vh"><i>🦇</i></span><span class="fb" style="--y:64vh;--s:33px;--dur:6.4s;--delay:3.92s;--amp:-6vh"><i>🦇</i></span><span class="fb" style="--y:16vh;--s:40px;--dur:6.4s;--delay:4.12s;--amp:6vh"><i>🦇</i></span><span class="fb rtl" style="--y:63vh;--s:31px;--dur:7.3s;--delay:4.3s;--amp:9vh"><i>🦇</i></span><span class="fb" style="--y:27vh;--s:32px;--dur:6.0s;--delay:4.68s;--amp:-9vh"><i>🦇</i></span><span class="fb" style="--y:15vh;--s:39px;--dur:7.2s;--delay:5.06s;--amp:6vh"><i>🦇</i></span><span class="fb" style="--y:49vh;--s:44px;--dur:6.6s;--delay:5.24s;--amp:9vh"><i>🦇</i></span><span class="fb rtl" style="--y:14vh;--s:24px;--dur:8.3s;--delay:5.52s;--amp:-9vh"><i>🦇</i></span></div></div>
+<button type="button" id="themeToggle" class="theme-toggle" aria-label="Activar tema oscuro" aria-pressed="false">🌙 Modo oscuro</button>
+
+    <header class="hero">
+<div class="halloween-decoration" aria-hidden="true"><span>🎃</span><span>👻</span></div>
+        <div class="glass-card">
+            <span class="badge">Especialidad en Pollo</span>
+            <h1>Los Gavilanes</h1>
+            <div class="rating">
+                ⭐⭐⭐⭐ 4.3 (80 reseñas)
+            </div>
+            <p class="description">
+                Rosticería &quot;Los Gavilanes&quot;
+            </p>
+            <div class="hero-cta-actions">
+                <a href="#menu" class="cta-button">🍗 Ver menú</a>
+                <a href="https://maps.app.goo.gl/VkP6N3KNesrVycSb7" target="_blank" rel="noopener noreferrer" class="cta-button cta-maps">📍 Ver en Maps</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="halloween-ribbon">🎃 ¡Temporada de Halloween en Los Gavilanes! 👻</div>
+    <aside class="road-notice" aria-labelledby="road-notice-title">
+        <div class="road-notice-icon" aria-hidden="true">📢</div>
+        <div>
+            <span class="road-notice-label">Aviso importante a nuestros clientes</span>
+            <h2 id="road-notice-title">🚧 Obras en Avenida Juárez</h2>
+            <p>Por las obras del colector municipal, en los próximos días la Avenida Juárez, donde se encuentra nuestro local, permanecerá cerrada.</p>
+            <p><strong>¡Seguimos abiertos y dando servicio!</strong> Si no puedes llegar a nuestra rosticería, llámanos y nosotros vamos hasta ti.</p>
+        </div>
+    </aside>
+    <main class="content-section">
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <h3>Ubicación</h3>
+                    <p>Av. Juárez, Central, 55790<br>Santa Ana Nextlalpan, Méx.</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🛵</div>
+                <div class="info-text">
+                    <h3>Nuestros Servicios</h3>
+                    <p>Contamos con entrega a domicilio sin complicaciones y servicio de comida para llevar. ¡Rápido y
+                        caliente!</p>
+                </div>
+            </div>
+
+            <div class="info-item contact-info">
+                <div class="info-icon" aria-hidden="true">☎️</div>
+                <div class="info-text">
+                    <h3>Teléfonos de contacto</h3>
+                    <p>Comunícate a nuestras líneas fijas para consultas y servicio a domicilio:</p>
+                    <div class="phone-list">
+                        <a href="tel:+525589675290">55 89 67 52 90</a>
+                        <a href="tel:+525659437761">56 59 43 77 61</a>
+                        <a href="tel:+525549115290">55 49 11 52 90</a>
+                        <a href="tel:+525549117979">55 49 11 79 79</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-wrapper">
+            <div class="map-container">
+                <iframe
+                    src="https://maps.google.com/maps?q=Rosticería+Los+Gavilanes,+Av.+Juárez,+Central,+Nextlalpan&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen="" loading="lazy" title="Ubicación de Rosticería Los Gavilanes">
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sección de productos -->
+    <section class="products-section" id="menu">
+        <div class="products-inner">
+            <h2 class="products-title">🛒 Nuestros Productos</h2>
+            <p class="products-subtitle">Todo lo que encuentras en nuestro local</p>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-emoji">🍗</div>
+                    <h3>Pollo Rostizado</h3>
+                    <p>Entero, medio o por pieza. Jugoso y dorado al punto.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-emoji">🦃</div>
+                    <h3>Piernas de Pavo</h3>
+                    <p>Grandes, sabrosas y perfectas para compartir en familia.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-emoji">🍖</div>
+                    <h3>Pescuesos</h3>
+                    <p>Una delicia rostizada, ideal para botanear o acompañar.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-emoji">🫓</div>
+                    <h3>Tortillas</h3>
+                    <p>Frescas y hechas al momento, el complemento perfecto.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-emoji">🥤</div>
+                    <h3>Refrescos</h3>
+                    <p>Variedad de bebidas frías para acompañar tu compra.</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-emoji">➕</div>
+                    <h3>Y mucho más</h3>
+                    <p>Pregunta por nuestras promociones y productos del día.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Rosticería Los Gavilanes</div>
+        &copy; 2026 Todos los derechos reservados. Diseño de demostración.
+    </footer>
+
+<script>
+(()=>{const b=document.getElementById('themeToggle');function setTheme(dark){if(dark)document.documentElement.dataset.theme='dark';else delete document.documentElement.dataset.theme;b.textContent=dark?'☀️ Modo claro':'🌙 Modo oscuro';b.setAttribute('aria-label',dark?'Activar tema claro':'Activar tema oscuro');b.setAttribute('aria-pressed',String(dark))}setTheme(document.documentElement.dataset.theme==='dark');b.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';setTheme(dark);try{localStorage.setItem('gavilanes-theme',dark?'dark':'light')}catch(e){}})})();
+</script></body>
+
+</html>
